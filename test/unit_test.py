@@ -5,6 +5,7 @@ from privacy import convert_codes, convert_cat, convert_num, combine_cols, \
                     preprocess, col_decoder, laplaceMechanism, weight, \
                     create_private_histo, check_input
 
+# Set data directories
 ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product1/PrivacyHistos")
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_test.csv"
