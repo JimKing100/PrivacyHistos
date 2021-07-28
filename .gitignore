@@ -1,6 +1,6 @@
 # Large data files
-*.ground_truth_s2.csv
-*.ground_truth_s3.csv
+ground_truth_s2.csv
+ground_truth_s3.csv
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
