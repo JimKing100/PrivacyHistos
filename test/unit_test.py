@@ -1,9 +1,7 @@
 import pandas as pd
 import numpy as np
 from pathlib import Path
-from privacy import convert_codes, convert_cat, convert_num, combine_cols, \
-                    preprocess, col_decoder, laplaceMechanism, weight, \
-                    create_private_histo, check_input
+import privacy
 
 # Set data directories
 ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product1/PrivacyHistos")
@@ -54,18 +52,18 @@ combo_list = ['taxi_id_i', 'spd', 'cp', 'fare']
 
 
 def test_check_input():
-    valid = check_input(ground_truth, combo_dict, num_dict)
+    valid = privacy.check_input(ground_truth, combo_dict, num_dict)
     assert valid == 1
 
 
 def test_convert_codes():
-    assert convert_codes(0, code_dict) == 10
-    assert convert_codes(5, code_dict) == 11
-    assert convert_codes(10, code_dict) == 12
+    assert privacy.convert_codes(0, code_dict) == 10
+    assert privacy.convert_codes(5, code_dict) == 11
+    assert privacy.convert_codes(10, code_dict) == 12
 
 
 def test_convert_cat():
-    df = convert_cat(ground_truth)
+    df = privacy.convert_cat(ground_truth)
     all_list = list(df.columns)
     new_char_list = (x for x in all_list if x[-5:] == '_char')
     assert all(x in new_char_list for x in char_list)
@@ -74,7 +72,7 @@ def test_convert_cat():
 
 
 def test_convert_num():
-    df, num_code_test, num_decode_test = convert_num(ground_truth, num_dict)
+    df, num_code_test, num_decode_test = privacy.convert_num(ground_truth, num_dict)
     all_list = list(df.columns)
     new_num_list = (x for x in all_list if x[-5:] == '_char')
     assert all(x in new_num_list for x in num_list)
@@ -85,9 +83,9 @@ def test_convert_num():
 
 
 def test_combine_cols():
-    df = convert_cat(ground_truth)
-    df, num_code, num_decode = convert_num(df, num_dict)
-    df, col_decode_test = combine_cols(df, combo_dict)
+    df = privacy.convert_cat(ground_truth)
+    df, num_code, num_decode = privacy.convert_num(df, num_dict)
+    df, col_decode_test = privacy.combine_cols(df, combo_dict)
     all_list = list(df.columns)
     assert all(x in all_list for x in combo_list)
     list_lengths = list(df['taxi_id_i'])
@@ -102,7 +100,7 @@ def test_combine_cols():
 
 
 def test_pre_process():
-    df, num_decode_test, col_decode_test = preprocess(ground_truth, combo_dict, num_dict)
+    df, num_decode_test, col_decode_test = privacy.preprocess(ground_truth, combo_dict, num_dict)
     all_list = list(df.columns)
     assert all(x in all_list for x in combo_list)
     assert num_decode_test == num_decode
@@ -110,7 +108,7 @@ def test_pre_process():
 
 
 def test_laplaceMechanism():
-    x = laplaceMechanism(0, 1, 1000)
+    x = privacy.laplaceMechanism(0, 1, 1000)
     assert (x > -10) & (x < 10)
 
 
@@ -123,7 +121,7 @@ def test_weight():
     sample_size = 30
     sensitivity = 92
     epsilon = 10.0
-    wt = weight(df_test, col, bins, sample, sample_size, sensitivity, epsilon)
+    wt = privacy.weight(df_test, col, bins, sample, sample_size, sensitivity, epsilon)
     assert len(wt) == 6
     assert wt[2] > wt[0]
     assert (sum(wt) > .99999) & (sum(wt) < 1.00001)
@@ -149,7 +147,7 @@ def test_create_private_histo():
     sample_size = 30
     sensitivity = 92
     epsilon = 10.0
-    cp_pop, cp_w = create_private_histo(df_test, col, sample, sample_size, sensitivity, epsilon)
+    cp_pop, cp_w = privacy.create_private_histo(df_test, col, sample, sample_size, sensitivity, epsilon)
     assert len(cp_w) == 6
     assert cp_w[2] > cp_w[0]
     assert (sum(cp_w) > .99999) & (sum(cp_w) < 1.00001)
@@ -157,21 +155,21 @@ def test_create_private_histo():
 
 
 def test_col_decoder():
-    result = col_decoder(num_dict, num_decode, col_decode, '1130608', 'shift_c')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '1130608', 'shift_c')
     assert result == 13
-    result = col_decoder(num_dict, num_decode, col_decode, '1130608', 'pca_c')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '1130608', 'pca_c')
     assert result == 6
-    result = col_decoder(num_dict, num_decode, col_decode, '1130608', 'dca_c')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '1130608', 'dca_c')
     assert result == 8
-    result = col_decoder(num_dict, num_decode, col_decode, '1270', 'company_c')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '1270', 'company_c')
     assert result == 27
-    result = col_decoder(num_dict, num_decode, col_decode, '1270', 'payment_c')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '1270', 'payment_c')
     assert result == 0
-    result = col_decoder(num_dict, num_decode, col_decode, '11101810', 'fare_n')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '11101810', 'fare_n')
     assert result >= 0 & result < 5
-    result = col_decoder(num_dict, num_decode, col_decode, '11101810', 'tips_n')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '11101810', 'tips_n')
     assert result == 0
-    result = col_decoder(num_dict, num_decode, col_decode, '11101810', 'seconds_n')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '11101810', 'seconds_n')
     assert result >= 700 & result < 800
-    result = col_decoder(num_dict, num_decode, col_decode, '11101810', 'miles_n')
+    result = privacy.col_decoder(num_dict, num_decode, col_decode, '11101810', 'miles_n')
     assert result == 0

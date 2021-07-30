@@ -3,7 +3,16 @@ import numpy as np
 import random
 from loguru import logger
 
+'''
+check_input - Checks the formatted ground truth data, the combination dictionary
+and the number dictionary for proper formatting and values.
 
+df - the formated ground truth dataframe
+combo_dict - the combination dictionary
+num_dict - the number dictionary
+
+returns result - 1 if True, 0 if False
+'''
 def check_input(df, combo_dict, num_dict):
     result = 0
     int_result = 0
@@ -18,7 +27,7 @@ def check_input(df, combo_dict, num_dict):
     col_len = len(col_list)
 
     # Check for all integers
-    types = df.dtypes <= np.integer
+    types = (df.dtypes <= np.int64) | (df.dtypes <= np.int32)
     all_ints = pd.Series(types.all())
     if all_ints.bool():
         int_result = 1
@@ -81,6 +90,14 @@ def check_input(df, combo_dict, num_dict):
     return result
 
 
+'''
+convert_codes - Used in convert_num to convert a number to an integer code.
+
+n - a float or integer
+d - a code dictionary
+
+returns an integer
+'''
 def convert_codes(n, d):
     if n < 1:
         return 10
@@ -91,6 +108,13 @@ def convert_codes(n, d):
                 break
 
 
+'''
+convert_cat - Used in preprocess to convert categorical features into codes.
+
+df - the formated ground truth dataframe
+
+returns df - a new dataframe with all _c columns converted to _char coded columns
+'''
 def convert_cat(df):
     col_list = list(df.columns)
     for col in col_list:
@@ -102,6 +126,16 @@ def convert_cat(df):
     return df
 
 
+'''
+convert_num - Used in preprocess to convert numerical features into codes.
+
+df - the formated ground truth dataframe
+num_dict - the number dictionary
+
+returns df - a new dataframe with all _n columns converted to _char coded columns
+returns num_code - a dictionary of number codes
+returns num_decode - a dictionary for decoding numbers
+'''
 def convert_num(df, num_dict):
     col_list = list(df.columns)
     num_code = {}
@@ -133,6 +167,15 @@ def convert_num(df, num_dict):
     return df, num_code, num_decode
 
 
+'''
+combine_cols - Used in preprocess to combine columns based on the combo dictionary.
+
+df - the formatted and converted ground truth dataframe
+combo_dict - the combination dictionary
+
+returns df - a formatted, converted and combined ground truth dataframe
+returns col_decode - a dictionary for decoding the combined columns
+'''
 def combine_cols(df, combo_dict):
     col_decode = {}
     val_list = []
@@ -167,6 +210,18 @@ def combine_cols(df, combo_dict):
     return df, col_decode
 
 
+'''
+preprocess - Pre-processes the formatted ground truth by combining the columns
+per the combination dictionary and the number dictionary.
+
+df - the formatted ground ground_truth
+combo_dict - the combination dictionary
+num_dict - the number dictionary
+
+returns df - a formatted, converted and combined ground truth dataframe
+returns num_decode - a dictionary for decoding numbers
+returns col_decode - a dictionary for decoding the combined columns
+'''
 def preprocess(ground_truth, combo_dict, num_dict):
     df = convert_cat(ground_truth)
     df, num_code, num_decode = convert_num(df, num_dict)
@@ -174,12 +229,32 @@ def preprocess(ground_truth, combo_dict, num_dict):
     return df, num_decode, col_decode
 
 
+'''
+laplaceMechanism - A function for adding random noise using the Laplace Mechanism.
+
+x - the input number
+m - the sensitivity value
+e - the epsilon value
+'''
 def laplaceMechanism(x, m, e):
     if x != 0:
         x += np.random.laplace(0, m/e, 1)[0]
     return x
 
 
+'''
+weight - Used in create_private_histo to calculate the privatized histogram weights.
+
+df - the preprocessed dataframe
+col - the column to calculate weights
+bins - a list of bins to store the weights
+sample - 1 if using sampling, 0 if no sampling
+sample_size - the sample size
+sensitivity - the sensitivity value
+epsilon - the epsilon value
+
+returns wt - a list of weights
+'''
 def weight(df, col, bins, sample, sample_size, sensitivity, epsilon):
     if sample == 1:
         col_list = list(df.columns)
@@ -203,12 +278,33 @@ def weight(df, col, bins, sample, sample_size, sensitivity, epsilon):
     return wt
 
 
+'''
+histo_test - Counts the number of bins created for each combined column in the
+preprocessed dataframe.  A useful tool for determining the optimal feature
+combinations.
+
+df - the preprocessed dataframe
+combo_dict - the combination dictionary
+
+prints a count of bins for each combined column
+'''
 def histo_test(df, combo_dict):
     for key in combo_dict:
         bins = df[key].unique().tolist()
         logger.info(f"number of bins in {key} {len(bins)}")
 
 
+'''
+create_private_histo - Created privatized histograms of the specified combined
+column using a specified sample size, sensitivity and epsilon.
+
+df - the preprocessed dataframe
+col - the column
+sample - 1 if using sampling, 0 if no sampling
+sample_size - the sample size
+sensitivity - the sensitivity value
+epsilon - the epsilon value
+'''
 def create_private_histo(df, col, sample, sample_size, sensitivity, epsilon):
     bins = df[col].unique().tolist()
     bins.append(-np.inf)
@@ -222,6 +318,17 @@ def create_private_histo(df, col, sample, sample_size, sensitivity, epsilon):
     return pop, wt
 
 
+'''
+col_decoder - Decodes the specified column into its privatized value.
+
+num_dict - the number dictionary
+num_decode - a dictionary used to decode the numbers
+col_decode - a dictionary used to decode the columns
+combined_value - the combined value to decode
+col - the column to decode
+
+returns result - a decoded privatized value
+'''
 def col_decoder(num_dict, num_decode, col_decode, combined_val, col):
     start = int(col_decode[col][1])
     end = int(col_decode[col][2])
