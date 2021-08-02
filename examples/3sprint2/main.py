@@ -11,7 +11,7 @@ from simulate_row import simulate_row
 ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product/final")
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_s2.csv"
-output_file = ROOT_DIRECTORY / "submission.csv"
+output_file = ROOT_DIRECTORY / "submission1.csv"
 
 header = ['PUMA', 'YEAR', 'HHWT', 'GQ', 'PERWT', 'SEX', 'AGE', 'MARST', 'RACE',
           'HISPAN', 'CITIZEN', 'SPEAKENG', 'HCOVANY', 'HCOVPRIV', 'HINSEMP',

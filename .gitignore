@@ -1,4 +1,6 @@
 # Large data files
+data/ground_truth_2.csv
+data/ground_truth_3.csv
 data/ground_truth_s2.csv
 data/ground_truth_s3.csv
 

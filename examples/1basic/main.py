@@ -7,7 +7,6 @@ import privacy
 ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product1/PrivacyHistos")
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_test.csv"
-output_file = DATA_DIRECTORY / "ground_truth_basic.csv"
 
 number_histos = 3
 sample = 1
@@ -30,7 +29,7 @@ num_dict = {'fare_n': [50, 5, 100],
 
 ground_truth = pd.read_csv(ground_truth_file)
 
-valid = privacy.test_input(ground_truth, combo_dict, num_dict)
+valid = privacy.check_input(ground_truth, combo_dict, num_dict)
 
 df, num_decode, col_decode = privacy.preprocess(ground_truth, combo_dict, num_dict)
 print(df, num_decode, col_decode)
