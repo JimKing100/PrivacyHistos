@@ -3,46 +3,58 @@ from pathlib import Path
 from random import choices
 import privacy
 
-# Set data directories
+# Set root and data directories
 ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product1/PrivacyHistos")
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_test.csv"
 
-number_histos = 3
-sample = 1
-sample_size = 3
-population_queries = 2
-epsilon = 10.0
+number_histos = 3       # Create 3 histograms
+sample = 1              # Use sampling
+sample_size = 3         # Sample size equals 3
+population_queries = 2  # Use 2 population queries
+epsilon = 10.0          # Use an epsilon value of 10
 
+# Calculate the sensitivity
 sensitivity = (number_histos * sample_size) + population_queries
 
+# Define the combined columns for the 3 histograms
 combo_dict = {'spd': ['shift_c', 'pca_c', 'dca_c'],
               'cp': ['company_c', 'payment_c'],
               'fare': ['fare_n', 'tips_n', 'seconds_n', 'miles_n']
               }
 
+# Define the number dictionary for each numeric column
 num_dict = {'fare_n': [50, 5, 100],
             'tips_n': [20, 2, 50],
             'seconds_n': [5000, 100, 10000],
             'miles_n': [20, 2, 50]
             }
 
+# Read the formatted ground truth file
 ground_truth = pd.read_csv(ground_truth_file)
 
+# Check if the ground truth file is properly formatted
 valid = privacy.check_input(ground_truth, combo_dict, num_dict)
 
+# Preprocess the ground truth by combining the columns and creating decodings
 df, num_decode, col_decode = privacy.preprocess(ground_truth, combo_dict, num_dict)
 print(df, num_decode, col_decode)
 
+# Print a count of the number of bins for each histogram
 privacy.histo_test(df, combo_dict)
 
+# Create privatized histograms for the specified column using the sample size,
+# sensitivity and epsilon
 spd_population, spd_weights = privacy.create_private_histo(df, 'spd', sample, sample_size, sensitivity, epsilon)
 cp_population, cp_weights = privacy.create_private_histo(df, 'cp', sample, sample_size, sensitivity, epsilon)
 fare_population, fare_weights = privacy.create_private_histo(df, 'fare', sample, sample_size, sensitivity, epsilon)
+
+# Select a random combined column value from the histogram
 spd_value = choices(spd_population, spd_weights)
 cp_value = choices(cp_population, cp_weights)
 fare_value = choices(fare_population, fare_weights)
 
+# Decode the column values from the combined column values
 shift = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'shift_c')
 pca = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'pca_c')
 dca = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'dca_c')

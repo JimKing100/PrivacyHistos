@@ -7,27 +7,32 @@ import privacy
 import trips
 from simulate_row import simulate_row
 
+# Set root and data directories
 ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product/final")
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_s3.csv"
-output_file = ROOT_DIRECTORY / "submission.csv"
+output_file = ROOT_DIRECTORY / "submission3.csv"
 
+# Select the columns
 header = ['epsilon', 'shift', 'company_id', 'pickup_community_area',
           'dropoff_community_area', 'payment_type', 'fare', 'tips',
           'trip_total', 'trip_seconds', 'trip_miles']
 
-number_histos = 3
-population_queries = 2
-epsilons = [1.0, 10.0]
-max_records = 17000000
-mrpi = 200
-sample = 1
 
+number_histos = 3       # Create 3 histograms
+population_queries = 2  # Use 2 population queries
+epsilons = [1.0, 10.0]  # Use epsilon values of 1 and 10
+max_records = 17000000  # Maximum number of records
+mrpi = 200              # Maximum records per individual
+sample = 1              # Use sampling
+
+# Define the combined columns for the 3 histograms
 combo_dict = {'spd': ['shift_c', 'pca_c', 'dca_c'],
               'cp': ['company_c', 'payment_c'],
               'fare': ['fare_n', 'tips_n', 'seconds_n', 'miles_n']
               }
 
+# Define the number dictionary for each numeric column
 num_dict = {'fare_n': [55, 5, 100],
             'tips_n': [22, 2, 50],
             'seconds_n': [5100, 100, 10000],
@@ -41,6 +46,8 @@ def main():
     e_counter = 1
     filenames = []
 
+    # Preprocessing - load formatted ground truth, check for proper formatting,
+    # create a proximity dictionary and check the number of bins
     logger.info("begin pre-processing")
     ground_truth = pd.read_csv(ground_truth_file)
     valid = privacy.check_input(ground_truth, combo_dict, num_dict)
@@ -145,6 +152,7 @@ def main():
         filenames.append(epsilon_file)
         logger.info(f"done for epsilon {epsilon}")
 
+    # Write the final results to the output file
     logger.info("writing submission.csv")
     with open(output_file, 'w') as outfile:
         for fname in filenames:

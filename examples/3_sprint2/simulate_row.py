@@ -3,37 +3,13 @@ import privacy
 import random
 
 
-def time_conv(n):
-    t = str(n)
+'''
+time_add - Adds 20 minutes to a military time values
 
-    # Determine hour
-    if len(t) < 3:
-        hour = 0
-    elif len(t) == 3:
-        hour = int(t[0])
-    else:
-        hour = int(t[0:2])
+t_value - an integer in military time (0-2359)
 
-    # Determine minute
-    end = int(t[-2:])
-    if end > 59:
-        hour = hour + 1
-        minute = int(end % 60)
-    else:
-        minute = end
-
-    # Concatenate and test bounds
-    h = str(hour).zfill(2)
-    m = str(minute).zfill(2)
-    result = h+m
-    final = int(result)
-    if final < 0:
-        final = 0
-    elif final > 2359:
-        final = 2359
-    return final
-
-
+returns new_time - an integer in military time (0-2359)
+'''
 def time_add(t_value):
     n = 20
     if t_value == 0:
@@ -58,8 +34,25 @@ def time_add(t_value):
     return new_time
 
 
-# The row simulator - builds one simulated row
-#     returns a single simulated row
+'''
+simulate_row - The row simululator which builds one simulated simulate_row
+
+epsilon - the epsilon value
+puma - the puma value
+year - the year value
+hhwt - the hhwt code
+demo - the demo code
+ageeduc - the ageeduc code
+health - the health code
+work - the work code
+income - the income code
+departs - the depart code
+n_dict - the number dictionary
+n_decode - the number decode dictionary
+c_decode - the category decode dictionary
+
+returns row - a dictionary of a simulated row
+'''
 def simulate_row(epsilon,
                  puma,
                  year,
@@ -77,25 +70,31 @@ def simulate_row(epsilon,
 
     row = {}
     row['epsilon'] = epsilon
+
+    # convert puma back to original string
     temp_puma = str(puma)
     puma_len = len(temp_puma)
     front_puma = temp_puma[0:2]
     end_puma = temp_puma[2:puma_len]
     final_puma = front_puma + '-' + end_puma
     row['PUMA'] = final_puma
+
     row['YEAR'] = year
+
+    # Decode HHWT
     if hhwt == 0:
         hhwt_v = random.randrange(1, 20)
     elif hhwt == 480:
         hhwt_v = random.randrange(hhwt, 500)
     else:
         hhwt_v = random.randrange(hhwt, hhwt + 20)
-    # hhwt_v = utilities.col_decoder(n_dict, n_decode, c_decode, hhwt, 'HHWT_n')
-    # if hhwt_v == 0:
-        # hhwt_v = 1
     row['HHWT'] = hhwt_v
+
     row['GQ'] = privacy.col_decoder(n_dict, n_decode, c_decode, demo, 'GQ_c')
+
+    # PERWT = HHWT
     row['PERWT'] = hhwt_v
+
     row['SEX'] = privacy.col_decoder(n_dict, n_decode, c_decode, demo, 'SEX_c')
     row['AGE'] = privacy.col_decoder(n_dict, n_decode, c_decode, ageeduc, 'AGE_c')
     row['MARST'] = privacy.col_decoder(n_dict, n_decode, c_decode, demo, 'MARST_c')
@@ -121,23 +120,32 @@ def simulate_row(epsilon,
     row['INCTOT'] = privacy.col_decoder(n_dict, n_decode, c_decode, income, 'INCTOT_n')
     incwage_v = privacy.col_decoder(n_dict, n_decode, c_decode, income, 'INCWAGE_n')
     row['INCWAGE'] = incwage_v
+
+    # INCWELFR = INCWAGE when INCWAGE is less than $8000
     if incwage_v < 8000:
         row['INCWELFR'] = incwage_v
     else:
         row['INCWELFR'] = 0
+
     row['INCINVST'] = privacy.col_decoder(n_dict, n_decode, c_decode, income, 'INCINVST_n')
+
+    # INCEARN = INCWAGE
     row['INCEARN'] = incwage_v
+
     poverty = privacy.col_decoder(n_dict, n_decode, c_decode, income, 'POVERTY_n')
+    # POVERTY = 501 when code is > 500
     if poverty > 500:
         poverty = 501
     row['POVERTY'] = poverty
-    # time_v = utilities.col_decoder(n_dict, n_decode, c_decode, departs, 'DEPARTS_n')
-    # departs_v = time_conv(time_v)
+
+    # Decode DEPARTS
     if departs == 0:
         departs_v = 0
     else:
         departs_v = random.randrange(departs, departs + 30)
     row['DEPARTS'] = departs_v
+
+    # ARRIVES = DEPARTS + 20 minutes
     row['ARRIVES'] = time_add(departs_v)
 
     return row

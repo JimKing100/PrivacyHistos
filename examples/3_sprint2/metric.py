@@ -1,3 +1,9 @@
+'''
+This is a copy of the metric.py function used in the DrivenData NIST-De-ID2
+competition.  The original can be found in the runtime repo located at
+https://github.com/drivendataorg/deid2-runtime
+'''
+
 import json
 from collections import defaultdict
 from pathlib import Path

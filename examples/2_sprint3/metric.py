@@ -1,3 +1,9 @@
+'''
+This is a copy of the metric.py function used in the DrivenData NIST-De-ID3
+competition.  The original can be found in the runtime repo located at
+https://github.com/drivendataorg/deid2-runtime
+'''
+
 import json
 import shutil
 import tempfile

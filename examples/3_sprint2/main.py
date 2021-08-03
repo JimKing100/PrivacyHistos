@@ -8,11 +8,13 @@ from random import choices
 import privacy
 from simulate_row import simulate_row
 
+# Set root and data directories
 ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product/final")
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_s2.csv"
-output_file = ROOT_DIRECTORY / "submission1.csv"
+output_file = ROOT_DIRECTORY / "submission2.csv"
 
+# Select the columns
 header = ['PUMA', 'YEAR', 'HHWT', 'GQ', 'PERWT', 'SEX', 'AGE', 'MARST', 'RACE',
           'HISPAN', 'CITIZEN', 'SPEAKENG', 'HCOVANY', 'HCOVPRIV', 'HINSEMP',
           'HINSCAID', 'HINSCARE', 'EDUC', 'EMPSTAT', 'EMPSTATD', 'LABFORCE',
@@ -21,15 +23,17 @@ header = ['PUMA', 'YEAR', 'HHWT', 'GQ', 'PERWT', 'SEX', 'AGE', 'MARST', 'RACE',
           'DEPARTS', 'ARRIVES', 'sim_individual_id'
           ]
 
-number_histos = 7
-population_queries = 1
-epsilons = [0.1, 1.0, 10.0]
-max_records = 1350000
-mrpi = 7
-sample = 0
+number_histos = 7            # Create 7 histograms
+population_queries = 1       # Use 1 population query
+epsilons = [0.1, 1.0, 10.0]  # Use epsilon values of .1, 1 and 10
+max_records = 1350000        # Maximum number of records
+mrpi = 7                     # Maximum records per individual
+sample = 0                   # Do not use sampling
 
-combo_dict = {  # 'HHWT': ['HHWT_n'],
-              'DEMO': ['GQ_c', 'SEX_c', 'MARST_c', 'RACE_c', 'HISPAN_c',
+# Define the combined columns for the 5 combined histograms
+# Note:  There are two individual histograms HHWT and DEPARTS
+# 7 histograms total
+combo_dict = {'DEMO': ['GQ_c', 'SEX_c', 'MARST_c', 'RACE_c', 'HISPAN_c',
                        'CITIZEN_c', 'SPEAKENG_c'],
               'AGEEDUC': ['AGE_c', 'EDUC_c'],
               'HEALTH': ['HCOVANY_c', 'HCOVPRIV_c', 'HINSEMP_c', 'HINSCAID_c',
@@ -38,25 +42,24 @@ combo_dict = {  # 'HHWT': ['HHWT_n'],
                        'ABSENT_c', 'LOOKING_c', 'AVAILBLE_c', 'WRKRECAL_c',
                        'WORKEDYR_c'],
               'INCOME': ['INCTOT_n', 'INCWAGE_n', 'INCINVST_n', 'POVERTY_n']
-              #  'DEPARTS': ['DEPARTS_n']
               }
 
+# Custom numeric ranges for DEPART
 depart_list = [0, 300, 330, 400, 430, 500, 530, 600, 630, 700, 730, 800, 830, 900,
                930, 1000, 1030, 1100, 1130, 1200, 1230, 1300, 1330, 1400, 1430, 1500,
                1530, 1600, 1630, 1700, 1730, 1800, 1830, 1900, 1930, 2000, 2030, 2100,
                2130, 2200, 2230, 2300, 2330]
 
-num_dict = {  # 'HHWT_n': [480, 20, 500],
-            'INCTOT_n': [240000, 10000, 300000],
+# Define the number dictionary for each numeric combined column
+num_dict = {'INCTOT_n': [240000, 10000, 300000],
             'INCWAGE_n': [240000, 10000, 300000],
             'INCINVST_n': [150000, 10000, 250000],
             'POVERTY_n': [500, 100, 600]
-            #  'DEPARTS_n': [2300, 25, 2359]
             }
 
 
 # Creates the weights for the bins adding noise to the bin counts
-# using the Laplace mechanism
+# using the Laplace mechanism (for the individual histograms)
 #    df - the input dataframe
 #    c - the column
 #    b - the bins (population)
@@ -78,9 +81,10 @@ def weight(df, c, b, m, h, e):
     return w
 
 
-# The main procedure
 def main():
 
+    # Preprocessing - load formatted ground truth, check for proper formatting
+    # and check the number of bins
     logger.info("begin pre-processing")
     ground_truth = pd.read_csv(ground_truth_file)
     valid = privacy.check_input(ground_truth, combo_dict, num_dict)
@@ -111,18 +115,20 @@ def main():
         if epsilon <= 1.0:
             logger.info(f"begin histogram creation {epsilon}")
 
+            # Create the individual histogram for HHWT
             hhwt_bins = np.r_[np.arange(0, 500, 20), np.inf]
             hhwt_pop = [i * 20 for i in range(len(hhwt_bins))]
             hhwt_pop.pop()
             hhwt_w = weight(df, 'HHWT_x', hhwt_bins, mrpi, number_histos, epsilon)
 
-            # hhwt_pop, hhwt_w = utilities.create_private_histo(puma_data, 'HHWT', sample, mrpi, sensitivity, epsilon)
+            # Create the 5 combined histograms
             demo_pop, demo_w = privacy.create_private_histo(df, 'DEMO', sample, mrpi, sensitivity, epsilon)
             ageeduc_pop, ageeduc_w = privacy.create_private_histo(df, 'AGEEDUC', sample, mrpi, sensitivity, epsilon)
             health_pop, health_w = privacy.create_private_histo(df, 'HEALTH', sample, mrpi, sensitivity, epsilon)
             work_pop, work_w = privacy.create_private_histo(df, 'WORK', sample, mrpi, sensitivity, epsilon)
             income_pop, income_w = privacy.create_private_histo(df, 'INCOME', sample, mrpi, sensitivity, epsilon)
 
+            # Create the individual histogram for DEPARTS (custom numeric ranges)
             departs_bins = [-np.inf, 0, 300, 330, 400, 430, 500, 530, 600, 630, 700, 730, 800, 830, 900,
                             930, 1000, 1030, 1100, 1130, 1200, 1230, 1300, 1330, 1400, 1430, 1500,
                             1530, 1600, 1630, 1700, 1730, 1800, 1830, 1900, 1930, 2000, 2030, 2100,
@@ -133,7 +139,6 @@ def main():
                            2130, 2200, 2230, 2300]
             departs_w = weight(df, 'DEPARTS_x', departs_bins, mrpi, number_histos, epsilon)
 
-            # departs_pop, departs_w = utilities.create_private_histo(df, 'DEPARTS', sample, mrpi, sensitivity, epsilon)
             logger.info(f"end histogram creation {epsilon}")
 
         i = 1
@@ -142,8 +147,8 @@ def main():
             for year in years:
                 if epsilon > 1.0:
                     puma_data = df[(df['PUMA_x'] == puma)]
-                    # logger.info(f"begin histogram creation {epsilon}")
 
+                    # Create the individual histogram for HHWT
                     hhwt_bins = np.r_[np.arange(0, 500, 20), np.inf]
                     hhwt_pop = [i * 20 for i in range(len(hhwt_bins))]
                     hhwt_pop.pop()
@@ -156,6 +161,7 @@ def main():
                     work_pop, work_w = privacy.create_private_histo(puma_data, 'WORK', sample, mrpi, sensitivity, epsilon)
                     income_pop, income_w = privacy.create_private_histo(puma_data, 'INCOME', sample, mrpi, sensitivity, epsilon)
 
+                    # Create the individual histogram for DEPARTS (custom numeric ranges)
                     departs_bins = [-np.inf, 0, 300, 330, 400, 430, 500, 530, 600, 630, 700, 730, 800, 830, 900,
                                     930, 1000, 1030, 1100, 1130, 1200, 1230, 1300, 1330, 1400, 1430, 1500,
                                     1530, 1600, 1630, 1700, 1730, 1800, 1830, 1900, 1930, 2000, 2030, 2100,
@@ -165,9 +171,6 @@ def main():
                                    1530, 1600, 1630, 1700, 1730, 1800, 1830, 1900, 1930, 2000, 2030, 2100,
                                    2130, 2200, 2230, 2300]
                     departs_w = weight(puma_data, 'DEPARTS_x', departs_bins, mrpi, number_histos, epsilon)
-
-                    # departs_pop, departs_w = utilities.create_private_histo(df, 'DEPARTS', sample, mrpi, sensitivity, epsilon)
-                    # logger.info(f"end histogram creation {epsilon}")
 
                 # Create simulated individuals for each PUMA-year
                 puma_year = df[(df['PUMA_x'] == puma) &
@@ -208,6 +211,7 @@ def main():
                     i = i + 1
                     final_list.append(row)
 
+    # Write the final results to the output file
     logger.info('writing data to output file')
     final_df = pd.DataFrame.from_dict(final_list)
     final_df.to_csv(output_file, index=False)
