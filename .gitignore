@@ -4,6 +4,9 @@ data/ground_truth_3.csv
 data/ground_truth_s2.csv
 data/ground_truth_s3.csv
 
+# DS_Store
+**/.DS_Store
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
