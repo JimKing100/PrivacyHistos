@@ -8,7 +8,15 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
     * All data must be encoded as positive integers with no Nans
     * The column names must be appended as follows:
         - _c – indicates a categorical feature
+        - _n – indicates a numeric feature
+        - _i – One, and only one, column must be the individual identifier
+        - _x – indicates a feature to include but not used as a combination feature
 2) Sensitivity and Epsilon (sensitivity, epsilon)
+    * Sensitivity = (number of histograms * sample size) + population queries
+        - Number of histograms – the total number of histograms which may include other histograms not using the combined column approach.
+        - Sample size – the number of individual records to use for building the histograms (if smapling is used).
+        - Population queries – the total number of population queries used in the overall approach.
+    * Epsilon - The epslion value to use
 3) Combination Dictionary (combo_dict)
 4) Number Dictionary (num_dict)
 
