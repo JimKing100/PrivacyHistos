@@ -35,7 +35,13 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 
 ### Functions
 
-1) check_input(ground_truth, combo_dict, num_dict)
+There are five public functions:
+
+1) **check_input(ground_truth, combo_dict, num_dict)** - Tests the formatted ground truth data, the combination dictionary and the number dictionary for proper formatting and values.
+    * ground_truth – the formatted ground truth dataframe
+    * combo_dict – the combination dictionary
+    * num_dict – the numeric dictionary
+    * returns 1 if True
 2) pre_process(ground_truth, combo_dict, num_dict)
 3) histo_test(df, combo_dict)
 4) create_private_histo(df, column, sample, sample_size, sensitivity, epsilon)
