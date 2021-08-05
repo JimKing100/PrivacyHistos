@@ -5,6 +5,9 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 ### Input
 
 1) Formatted Ground Truth Data (ground_truth)
+    * All data must be encoded as positive integers with no Nans
+    * The column names must be appended as follows:
+        - _c – indicates a categorical feature
 2) Sensitivity and Epsilon (sensitivity, epsilon)
 3) Combination Dictionary (combo_dict)
 4) Number Dictionary (num_dict)
