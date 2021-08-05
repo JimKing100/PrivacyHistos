@@ -25,6 +25,13 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
     * Explanation – Create a column named ‘cp’ combining categorical fields
 ‘company_c’ and ‘payment_c’
 4) Number Dictionary (num_dict)
+    * Format - {column_name: [top_value, increment, max_range]}
+    * column_name – the name of the numeric feature
+    * top_value – the top value to use with the increment
+    * increment – the amount in each bin
+    * max_range – the maximum value of the numeric range
+    * Example – {‘fare_n’: [50, 5, 100]}
+    * Explanation – Create 11 numeric bins for numeric feature ‘fare_n’ with bins of 5 from 0-50 (10 bins of 5) with numbers over 50 in a bin of 50-100 (1 bin of 50).
 
 ### Functions
 
