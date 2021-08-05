@@ -4,25 +4,28 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 
 ----
 
-### [Getting started](#0-getting-started)
- - [Prerequisites](#prerequisites)
- - [Quickstart](#quickstart)
+### [Setup](#0-getting-started)
+ - [Environment](#environment)
+ - [Data](#data)
+### [Input](#1-input)
+### [Functions](#2-functions)
+### [Basic Example](#3-basic-example)
 
 ----
 
-## (0) Getting started
+## (0) Setup
 
-### Prerequisites
+### Environment
 
-Make sure you have the prerequisites installed.
+Environment
 
-### Quickstart
+### Data
 
-Quickstart
+Data
 
 In order to use the functions the following input is required:
 
-### Input
+## (1) Input
 
 1) **Formatted Ground Truth Data (ground_truth)**
     * All data must be encoded as positive integers with no Nans
@@ -53,7 +56,7 @@ In order to use the functions the following input is required:
     * Example – {‘fare_n’: [50, 5, 100]}
     * Explanation – Create 11 numeric bins for numeric feature ‘fare_n’ with bins of 5 from 0-50 (10 bins of 5) with numbers over 50 in a bin of 50-100 (1 bin of 50).
 
-### Functions
+## (2) Functions
 
 There are five public functions:
 
@@ -89,5 +92,9 @@ There are five public functions:
     * value – a value to decode
     * column – the column to decode
     * returns decoded privatized value
+
+## (3) Basic Example
+
+Basic example
 
 
