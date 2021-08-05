@@ -1,6 +1,26 @@
 # PrivacyHistos
 
-Welcome to the PrivacyHistos repository.  This repo contains five differential privacy functions for combining features into privatized histograms.  The five functions are contained in the **privacy.py** file located in the **src directory**.  In order to use the functions the following input is required:
+Welcome to the PrivacyHistos repository.  This repo contains five differential privacy functions for combining features into privatized histograms.  The five functions are contained in the **privacy.py** file located in the **src directory**.
+
+----
+
+### [Getting started](#0-getting-started)
+ - [Prerequisites](#prerequisites)
+ - [Quickstart](#quickstart)
+
+----
+
+## (0) Getting started
+
+### Prerequisites
+
+Make sure you have the prerequisites installed.
+
+### Quickstart
+
+Quickstart
+
+In order to use the functions the following input is required:
 
 ### Input
 
