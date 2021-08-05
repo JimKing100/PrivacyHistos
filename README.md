@@ -42,10 +42,32 @@ There are five public functions:
     * combo_dict – the combination dictionary
     * num_dict – the numeric dictionary
     * returns 1 if True
-2) pre_process(ground_truth, combo_dict, num_dict)
-3) histo_test(df, combo_dict)
-4) create_private_histo(df, column, sample, sample_size, sensitivity, epsilon)
-5) col_decoder(num_dict, num_decode, col_decode, value, column)
-
+2) **pre_process(ground_truth, combo_dict, num_dict)** - Preprocesses the ground truth data by combining the columns per the combination dictionary and number dictionary
+    * ground_truth – the formatted ground truth dataframe
+    * combo_dict – the combination dictionary
+    * num_dict – the numeric dictionary
+    * returns a new dataframe with combined columns (df)
+    * returns a numeric decoder dictionary (num_decode)
+    * returns a column decoder dictionary (col_decode)
+3) **histo_test(df, combo_dict)** - Counts the number of bins created for each combined column in the pre-processed dataframe. A useful tool for determining the optimal feature combinations.
+    * df – the pre-processed dataframe
+    * combo_dict – the combination dictionary
+    * prints a count of bins for each combined column
+4) **create_private_histo(df, column, sample, sample_size, sensitivity, epsilon)** - Creates privatized histograms of the specified combined column using a specified sample size, sensitivity and epsilon.
+    * df – the pre-processed dataframe
+    * column – the combined column
+    * sample - enter 1 to use sampling
+    * sample_size – the size of the sample
+    * sensitivity – the sensitivity
+    * epsilon – the epsilon
+    * returns population (bins) as a list
+    * returns privatized weights as a list
+5) **col_decoder(num_dict, num_decode, col_decode, value, column)** - Decodes the specified column into a its privatized value.
+    * num_dict – the numeric dictionary
+    * num_decode – the numeric decoder dictionary
+    * col_decode – the column decoder dictionary
+    * value – a value to decode
+    * column – the column to decode
+    * returns decoded privatized value
 
 
