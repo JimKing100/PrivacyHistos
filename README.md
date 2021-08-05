@@ -18,6 +18,12 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
         - Population queries – the total number of population queries used in the overall approach.
     * Epsilon - The epslion value to use
 3) Combination Dictionary (combo_dict)
+    * Format - {combo_name: column_list}
+    * combo_name – name of the the new combined feature
+    * column_list – a list of columns to combine (categorical and/or numeric)
+    * Example - {‘cp’: [‘company_c’, ‘payment_c’]}
+    * Explanation – Create a column named ‘cp’ combining categorical fields
+‘company_c’ and ‘payment_c’
 4) Number Dictionary (num_dict)
 
 ### Functions
