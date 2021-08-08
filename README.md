@@ -8,7 +8,7 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [Environment](#environment)
  - [Data](#data)
 ### [Input](#1-input)
- - [Formatted Ground Truth Data](#1-formatted-ground-truth-data)
+ - [Formatted Ground Truth Data](#1.-formatted-ground-truth-data)
 ### [Functions](#2-functions)
 ### [Basic Example](#3-basic-example)
 
