@@ -11,8 +11,13 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [Formatted Ground Truth Data](#formatted-ground-truth-data)
  - [Sensitivity and Epsilon](#sensitivity-and-epsilon)
  - [Combination Dictionary](#combination-dictionary)
- - [Number Dictionary](#number-dictionary)
+ - [Numeric Dictionary](#numeric-dictionary)
 ### [Functions](#2-functions)
+ - [check_input](#check_input)
+ - [pre_process](#pre_process)
+ - [histo_test](#histo_test)
+ - [create_private_histo](#create_private_histo)
+ - [col_decoder](#col_decoder)
 ### [Basic Example](#3-basic-example)
 
 ----
@@ -62,7 +67,7 @@ In order to use the functions the following input is required:
    * Example - {‘cp’: [‘company_c’, ‘payment_c’]}
    * Explanation – Create a column named ‘cp’ combining categorical fields ‘company_c’ and ‘payment_c’
 
-#### Number Dictionary
+#### Numeric Dictionary
 
    * The num_dict with the key = column name and the value = list of top value, increment and maximum range
    * Format - {column_name: [top_value, increment, max_range]}
@@ -77,23 +82,42 @@ In order to use the functions the following input is required:
 
 There are five public functions:
 
-1) **check_input(ground_truth, combo_dict, num_dict)** - Tests the formatted ground truth data, the combination dictionary and the number dictionary for proper formatting and values.
+#### check_input
+
+Tests the formatted ground truth data, the combination dictionary and the number dictionary for proper formatting and values.
+
+1) **check_input(ground_truth, combo_dict, num_dict)**
     * ground_truth – the formatted ground truth dataframe
     * combo_dict – the combination dictionary
     * num_dict – the numeric dictionary
     * returns 1 if True
-2) **pre_process(ground_truth, combo_dict, num_dict)** - Preprocesses the ground truth data by combining the columns per the combination dictionary and number dictionary
+
+#### pre_process
+
+Preprocesses the ground truth data by combining the columns per the combination dictionary and number dictionary
+
+2) **pre_process(ground_truth, combo_dict, num_dict)**
     * ground_truth – the formatted ground truth dataframe
     * combo_dict – the combination dictionary
     * num_dict – the numeric dictionary
     * returns a new dataframe with combined columns (df)
     * returns a numeric decoder dictionary (num_decode)
     * returns a column decoder dictionary (col_decode)
-3) **histo_test(df, combo_dict)** - Counts the number of bins created for each combined column in the pre-processed dataframe. A useful tool for determining the optimal feature combinations.
+
+#### histo_test
+
+Counts the number of bins created for each combined column in the pre-processed dataframe. A useful tool for determining the optimal feature combinations.
+
+3) **histo_test(df, combo_dict)**
     * df – the pre-processed dataframe
     * combo_dict – the combination dictionary
     * prints a count of bins for each combined column
-4) **create_private_histo(df, column, sample, sample_size, sensitivity, epsilon)** - Creates privatized histograms of the specified combined column using a specified sample size, sensitivity and epsilon.
+
+#### create_private_histo
+
+Creates privatized histograms of the specified combined column using a specified sample size, sensitivity and epsilon.
+
+4) **create_private_histo(df, column, sample, sample_size, sensitivity, epsilon)**
     * df – the pre-processed dataframe
     * column – the combined column
     * sample - enter 1 to use sampling
@@ -102,7 +126,12 @@ There are five public functions:
     * epsilon – the epsilon
     * returns population (bins) as a list
     * returns privatized weights as a list
-5) **col_decoder(num_dict, num_decode, col_decode, value, column)** - Decodes the specified column into a its privatized value.
+
+#### col_decoder
+
+Decodes the specified column into a its privatized value.
+
+5) **col_decoder(num_dict, num_decode, col_decode, value, column)**
     * num_dict – the numeric dictionary
     * num_decode – the numeric decoder dictionary
     * col_decode – the column decoder dictionary
