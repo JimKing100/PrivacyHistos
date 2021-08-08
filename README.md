@@ -18,12 +18,14 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 ### Environment
 
 There are two environments included in this repo, both require **Python 3.8.5+**:
-- **Basic** - The **requirements1.txt** file contains the bare bones packages necessary to run private.py and the basic example.
+- **Basic** - The **requirements1.txt** file contains the bare bones packages necessary to run private.py and the Basic example.
 - **Advanced** - The **requirements2.txt** files contains the packages necessary for running all the examples and unit testing.
 
 ### Data
 
-Data
+The data directory holds the necessary data files and only contains the data files for the Basic example.  In order to run the other eaxamples the data files will need to be downloaded into the data directory with the following names:
+- **ground_truth_2.csv** - The ground truth file for the Sprint 2 example (about 111.9MB).
+- **ground_truth_3.csv** - The ground truth file for the Sprint 3 example (about 623.5MB).
 
 In order to use the functions the following input is required:
 
