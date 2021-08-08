@@ -14,7 +14,7 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 
 ----
 
-## (0) Setup
+## (0) Setup {#0-getting-started}
 
 ### Environment
 
