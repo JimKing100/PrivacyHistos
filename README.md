@@ -8,6 +8,7 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [Environment](#environment)
  - [Data](#data)
 ### [Input](#1-input)
+ - [Formatted Ground Truth Data](#formatted-ground-truth-data)
 ### [Functions](#2-functions)
 ### [Basic Example](#3-basic-example)
 
@@ -27,9 +28,9 @@ The data directory holds the necessary data files and only contains the data fil
 - **ground_truth_2.csv** - The ground truth file for the Sprint 2 example (about 111.9MB).
 - **ground_truth_3.csv** - The ground truth file for the Sprint 3 example (about 623.5MB).
 
-In order to use the functions the following input is required:
-
 ## (1) Input
+
+In order to use the functions the following input is required:
 
 1) **Formatted Ground Truth Data (ground_truth)**
     * All data must be encoded as positive integers with no Nans
