@@ -4,17 +4,16 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 
 ----
 
-### [Setup](#0-getting-started)
+### [Setup](#0-setup)
  - [Environment](#environment)
  - [Data](#data)
 ### [Input](#1-input)
- - [Formatted Ground Truth Data](#1.-formatted-ground-truth-data)
 ### [Functions](#2-functions)
 ### [Basic Example](#3-basic-example)
 
 ----
 
-## (0) Setup {#0-getting-started}
+## (0) Setup
 
 ### Environment
 
