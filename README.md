@@ -80,7 +80,7 @@ In order to use the functions the following input is required:
 
 ## (2) Functions
 
-There are five public functions:
+There are five public functions located in **private.py**:
 
 #### check_input
 
