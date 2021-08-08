@@ -17,9 +17,9 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 
 ### Environment
 
-There are two environments included in this repo, both require Python 3.8.5+:
-- Basic - The requirements1.txt file contains the bare bones packages necessary to run private.py and the basic example.
-- Advanced - The requirements2.txt files contains the packages necessary for running all the examples and unit testing.
+There are two environments included in this repo, both require **Python 3.8.5+**:
+- **Basic** - The **requirements1.txt** file contains the bare bones packages necessary to run private.py and the basic example.
+- **Advanced** - The **requirements2.txt** files contains the packages necessary for running all the examples and unit testing.
 
 ### Data
 
