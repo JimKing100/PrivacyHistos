@@ -21,6 +21,8 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 ### [Basic Example](#3-basic-example)
  - [Basic Formatted Ground Truth](#basic-formatted-ground-truth)
  - [Basic Sensitivity and Epsilon](#basic-sensitivity-and-epsilon)
+ - [Basic Combination Dictionary](#basic-combination-dictionary)
+ - [Basic Numeric Dictionary](#baisc-numeric-dictionary)
 
 ----
 
@@ -169,7 +171,7 @@ taxi_id_i,shift_c,company_c,pca_c,dca_c,payment_c,fare_n,tips_n,seconds_n,miles_
 
 #### Basic Sensitivity and Epsilon
 
-The sensitivity and epsilon are:
+The Basic sensitivity and epsilon are calculated in **main.py**:
 
 ```
 number_histos = 3       # Create 3 histograms
@@ -182,6 +184,30 @@ epsilon = 10.0          # Use an epsilon value of 10
 sensitivity = (number_histos * sample_size) + population_queries
 ```
 
+#### Basic Combination Dictionary
+
+The Basic combination dictionary in **main.py** is:
+
+```
+# Define the combined columns for the 3 histograms
+combo_dict = {'spd': ['shift_c', 'pca_c', 'dca_c'],
+              'cp': ['company_c', 'payment_c'],
+              'fare': ['fare_n', 'tips_n', 'seconds_n', 'miles_n']
+              }
+```
+
+#### Basic Numeric Dictionary
+
+The Basic numeric dictionary in **main.py** is:
+
+```
+# Define the number dictionary for each numeric column
+num_dict = {'fare_n': [50, 5, 100],
+            'tips_n': [20, 2, 50],
+            'seconds_n': [5000, 100, 10000],
+            'miles_n': [20, 2, 50]
+            }
+```
 
 
 
