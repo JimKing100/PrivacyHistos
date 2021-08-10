@@ -23,11 +23,11 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [Basic Sensitivity and Epsilon](#basic-sensitivity-and-epsilon)
  - [Basic Combination Dictionary](#basic-combination-dictionary)
  - [Basic Numeric Dictionary](#basic-numeric-dictionary)
- - [Basic check_input](#1-check_input)
- - [Basic preprocess](#2-preprocess)
- - [Basic histo_test](#3-histo_test)
- - [Basic create_private_histos](#4-create_private_histos)
- - [Basic col_decoder](#5-col_decoder)
+ - [1 check_input](#1-check_input)
+ - [2 preprocess](#2-preprocess)
+ - [3 histo_test](#3-histo_test)
+ - [4 create_private_histos](#4-create_private_histos)
+ - [5 col_decoder](#5-col_decoder)
 
 ----
 
