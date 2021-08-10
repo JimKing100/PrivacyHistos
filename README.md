@@ -167,7 +167,9 @@ taxi_id_i,shift_c,company_c,pca_c,dca_c,payment_c,fare_n,tips_n,seconds_n,miles_
 - fare_n = fare paid (numeric) 
 - tips_n = tips paid (numeric) 
 - seconds_n = trip seconds (numeric) 
-- miles_n = trip miles (numeric) 
+- miles_n = trip miles (numeric)
+
+Notice the data is properly formatted.
 
 #### Basic Sensitivity and Epsilon
 
@@ -184,6 +186,8 @@ epsilon = 10.0          # Use an epsilon value of 10
 sensitivity = (number_histos * sample_size) + population_queries
 ```
 
+In this example the sensitivity is 11 and epsilon is 10.
+
 #### Basic Combination Dictionary
 
 The Basic combination dictionary in **main.py** is:
@@ -195,6 +199,8 @@ combo_dict = {'spd': ['shift_c', 'pca_c', 'dca_c'],
               'fare': ['fare_n', 'tips_n', 'seconds_n', 'miles_n']
               }
 ```
+
+For example, the **shift_c, pca_c and dca_c** columns are combined into the **spd** column.
 
 #### Basic Numeric Dictionary
 
@@ -208,6 +214,6 @@ num_dict = {'fare_n': [50, 5, 100],
             'miles_n': [20, 2, 50]
             }
 ```
-
+For example, the fare_n column data is divided into 11 numeric bins with bins of **5** from 0-**50** (10 bins of 5) with numbers over 50 in a bin of 50-**100** (1 bin of 50).
 
 
