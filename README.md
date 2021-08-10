@@ -275,7 +275,19 @@ The returned column decoder dictionary is:
 privacy.histo_test(df, combo_dict)
 ```
 
+The histo test prints the following:
+
+```
+2021-08-10 09:51:16.368 | INFO     | privacy:histo_test:294 - number of bins in spd 198
+2021-08-10 09:51:16.368 | INFO     | privacy:histo_test:294 - number of bins in cp 3
+2021-08-10 09:51:16.369 | INFO     | privacy:histo_test:294 - number of bins in fare 90
+
+```
+
+
 #### 4 create_private_histo
+
+The create_private_histo function create the privatized histograms as lists of populations and weights.
 
 ```
 # Create privatized histograms for the specified column using the sample size, sensitivity and epsilon
@@ -286,6 +298,8 @@ fare_population, fare_weights = privacy.create_private_histo(df, 'fare', sample,
 
 #### 5 col_decoder
 
+Using the histogtams (populations and weights), a random value for a combined column is selected and decoded.
+
 ```
 # Select a random combined column value from the histogram
 spd_value = choices(spd_population, spd_weights)
@@ -295,5 +309,16 @@ shift = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'shi
 pca = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'pca_c')
 dca = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'dca_c')
 ```
+
+The values of the combined column and decoded values are:
+
+```
+spd_value [1130808]
+shift 13
+pca 8
+dca 8
+```
+
+
 
 
