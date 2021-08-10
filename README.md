@@ -150,7 +150,7 @@ Decodes the specified column into a its privatized value.
 
 ## (3) Basic Example
 
-The Basic example is located in the examples directory in the 1_basic directory.  The python file is main.py.  It uses a small sample of data to demonstrate the use of the five functions.
+The Basic example is located in the **examples** directory in the **1_basic** directory.  The python file is **main.py**.  It uses a small sample of data to demonstrate the use of the five functions.
 
 #### Basic Formatted Ground Truth
 
@@ -231,12 +231,37 @@ The **privacy.check_input** function checks to see if the ground truth file is p
 
 #### 2 preprocess
 
+```
+# Preprocess the ground truth by combining the columns and creating decodings
+df, num_decode, col_decode = privacy.preprocess(ground_truth, combo_dict, num_dict)
+```
+
 #### 3 histo_test
+
+```
+# Print a count of the number of bins for each histogram
+privacy.histo_test(df, combo_dict)
+```
 
 #### 4 create_private_histo
 
+```
+# Create privatized histograms for the specified column using the sample size, sensitivity and epsilon
+spd_population, spd_weights = privacy.create_private_histo(df, 'spd', sample, sample_size, sensitivity, epsilon)
+cp_population, cp_weights = privacy.create_private_histo(df, 'cp', sample, sample_size, sensitivity, epsilon)
+fare_population, fare_weights = privacy.create_private_histo(df, 'fare', sample, sample_size, sensitivity, epsilon)
+```
+
 #### 5 col_decoder
 
+```
+# Select a random combined column value from the histogram
+spd_value = choices(spd_population, spd_weights)
 
+# Decode the column values from the combined column values
+shift = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'shift_c')
+pca = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'pca_c')
+dca = privacy.col_decoder(num_dict, num_decode, col_decode, spd_value[0], 'dca_c')
+```
 
 
