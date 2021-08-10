@@ -19,6 +19,7 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [create_private_histo](#create_private_histo)
  - [col_decoder](#col_decoder)
 ### [Basic Example](#3-basic-example)
+ - [Input](#input)
 
 ----
 
@@ -154,15 +155,15 @@ taxi_id_i,shift_c,company_c,pca_c,dca_c,payment_c,fare_n,tips_n,seconds_n,miles_
 1004636,0,27,8,8,0,5,0,240,0
 1004636,0,27,8,6,1,10,2,660,0
 ```
-taxi_id_i = a unique taxi driver id 
-shift_c = a taxi shift number from 0-20 (categorical) 
-company_c = a company id from 0-99 (categorical) 
-pca_c = a pickup community area from 0-77 (categorical) 
-dca_c = a dropoff community area from 0-77 (catgorical) 
-payment_c = payment type from 0-9(categorical) 
-fare_n = fare paid (numeric) 
-tips_n = tips paid (numeric) 
-seconds_n = trip seconds (numeric) 
-miles_n = trip miles (numeric) 
+- taxi_id_i = a unique taxi driver id 
+- shift_c = a taxi shift number from 0-20 (categorical) 
+- company_c = a company id from 0-99 (categorical) 
+- pca_c = a pickup community area from 0-77 (categorical) 
+- dca_c = a dropoff community area from 0-77 (catgorical) 
+- payment_c = payment type from 0-9(categorical) 
+- fare_n = fare paid (numeric) 
+- tips_n = tips paid (numeric) 
+- seconds_n = trip seconds (numeric) 
+- miles_n = trip miles (numeric) 
 
 
