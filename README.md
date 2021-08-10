@@ -19,7 +19,7 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [create_private_histo](#create_private_histo)
  - [col_decoder](#col_decoder)
 ### [Basic Example](#3-basic-example)
- - [Input](#input)
+ - [Formatted Ground Truth](#formatted-ground-truth)
 
 ----
 
@@ -144,7 +144,7 @@ Decodes the specified column into a its privatized value.
 
 The Basic example uses a small sample input to demonstrate the use of the five functions.
 
-#### Input
+#### Formatted Ground Truth
 
 The first five rows of the **ground_truth_test.csv** are shown below:
 
