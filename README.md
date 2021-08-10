@@ -23,7 +23,11 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [Basic Sensitivity and Epsilon](#basic-sensitivity-and-epsilon)
  - [Basic Combination Dictionary](#basic-combination-dictionary)
  - [Basic Numeric Dictionary](#basic-numeric-dictionary)
- - [Basic check_input](#basic-check_input)
+ - [Basic check_input](#1-check_input)
+ - [Basic preprocess](#2-preprocess)
+ - [Basic histo_test](#3-histo_test)
+ - [Basic create_private_histos](#4-create_private_histos)
+ - [Basic col_decoder](#5-col_decoder)
 
 ----
 
@@ -217,12 +221,22 @@ num_dict = {'fare_n': [50, 5, 100],
 ```
 For example, the fare_n column data is divided into 11 numeric bins with bins of **5** from 0-**50** (10 bins of 5) with numbers over 50 in a bin of 50-**100** (1 bin of 50).
 
-#### Basic check_input
+#### 1 check_input
 
 ```
 # Check if the ground truth file is properly formatted
 valid = privacy.check_input(ground_truth, combo_dict, num_dict)
 ```
 The **privacy.check_input** function checks to see if the ground truth file is properly formatted and returns 1 if True.
+
+#### 2 preprocess
+
+#### 3 histo_test
+
+#### 4 create_private_histo
+
+#### 5 col_decoder
+
+
 
 
