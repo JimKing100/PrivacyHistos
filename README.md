@@ -54,7 +54,7 @@ In order to use the functions the following input is required:
 
    * Sensitivity = (number of histograms * sample size) + population queries
       - Number of histograms – the total number of histograms which may include other histograms not using the combined column approach.
-      - Sample size – the number of individual records to use for building the histograms (if smapling is used).
+      - Sample size – the number of individual records to use for building the histograms (if sampling is used).
       - Population queries – the total number of population queries used in the overall approach.
    * Epsilon - The epslion value to use
 
