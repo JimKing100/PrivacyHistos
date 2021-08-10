@@ -141,6 +141,16 @@ Decodes the specified column into a its privatized value.
 
 ## (3) Basic Example
 
-Basic example
+The Basic example uses a small sample input to demonstrate the use of the five functions.
+
+#### Input
+
+```
+taxi_id_i,shift_c,company_c,pca_c,dca_c,payment_c,fare_n,tips_n,seconds_n,miles_n
+1004636,0,27,76,0,1,44,14,1440,0
+1004636,0,27,8,8,0,10,0,720,0
+1004636,0,27,8,8,0,5,0,240,0
+1004636,0,27,8,6,1,10,2,660,0
+```
 
 
