@@ -19,7 +19,8 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [create_private_histo](#create_private_histo)
  - [col_decoder](#col_decoder)
 ### [Basic Example](#3-basic-example)
- - [Formatted Ground Truth](#formatted-ground-truth)
+ - [Basic Formatted Ground Truth](#basic-formatted-ground-truth)
+ - [Basic Sensitivity and Epsilon](#basic-sensitivity-and-epsilon)
 
 ----
 
@@ -142,9 +143,9 @@ Decodes the specified column into a its privatized value.
 
 ## (3) Basic Example
 
-The Basic example uses a small sample input to demonstrate the use of the five functions.
+The Basic example is located in the examples directory in the 1_basic directory.  The python file is main.py.  It uses a small sample of data to demonstrate the use of the five functions.
 
-#### Formatted Ground Truth
+#### Basic Formatted Ground Truth
 
 The first five rows of the **ground_truth_test.csv** are shown below:
 
@@ -165,5 +166,22 @@ taxi_id_i,shift_c,company_c,pca_c,dca_c,payment_c,fare_n,tips_n,seconds_n,miles_
 - tips_n = tips paid (numeric) 
 - seconds_n = trip seconds (numeric) 
 - miles_n = trip miles (numeric) 
+
+#### Basic Sensitivity and Epsilon
+
+The sensitivity and epsilon are:
+
+```
+number_histos = 3       # Create 3 histograms
+sample = 1              # Use sampling
+sample_size = 3         # Sample size equals 3
+population_queries = 2  # Use 2 population queries
+epsilon = 10.0          # Use an epsilon value of 10
+
+# Calculate the sensitivity
+sensitivity = (number_histos * sample_size) + population_queries
+```
+
+
 
 
