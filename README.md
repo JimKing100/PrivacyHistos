@@ -22,7 +22,8 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [Basic Formatted Ground Truth](#basic-formatted-ground-truth)
  - [Basic Sensitivity and Epsilon](#basic-sensitivity-and-epsilon)
  - [Basic Combination Dictionary](#basic-combination-dictionary)
- - [Basic Numeric Dictionary](#baisc-numeric-dictionary)
+ - [Basic Numeric Dictionary](#basic-numeric-dictionary)
+ - [privacy.check_input](#privacy.check_input)
 
 ----
 
@@ -215,5 +216,13 @@ num_dict = {'fare_n': [50, 5, 100],
             }
 ```
 For example, the fare_n column data is divided into 11 numeric bins with bins of **5** from 0-**50** (10 bins of 5) with numbers over 50 in a bin of 50-**100** (1 bin of 50).
+
+#### privacy.check_input
+
+```
+# Check if the ground truth file is properly formatted
+valid = privacy.check_input(ground_truth, combo_dict, num_dict)
+```
+The **privacy.check_input** function checks to see if the ground truth file is properly formatted and returns 1 if True.
 
 
