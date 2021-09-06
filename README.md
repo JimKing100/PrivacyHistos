@@ -327,12 +327,12 @@ The Sprint 3 example is located in the **examples** directory in the **2_sprint3
 
 #### Code
 
-The **convert_s3.py** code converts the raw data to properly formatted data.
-The **main.py** code is the main program - run **python main.py**
-The **metric.py** code calculates the metrics for the results - run **python metric.py ground_truth.csv submission.csv**
-The **privacy.py** code contains the privacy functions
-The **simulate_row.py** code creates a simulated row - called from **main.py**
-The **trips.py** code contains trip related functions - called from **main.py**
+The **convert_s3.py** code converts the raw data to properly formatted data.  
+The **main.py** code is the main program - run **python main.py**  
+The **metric.py** code calculates the metrics for the results - run **python metric.py ground_truth.csv submission.csv**  
+The **privacy.py** code contains the privacy functions  
+The **simulate_row.py** code creates a simulated row - called from **main.py**  
+The **trips.py** code contains trip related functions - called from **main.py**  
 
 ## (5) Sprint 2 Example
 
@@ -340,9 +340,9 @@ The Sprint 2 example is located in the **examples** directory in the **3_sprint2
 
 #### Code
 
-The **convert_s2.py** code converts the raw data to properly formatted data.
-The **main.py** code is the main program - run **python main.py**
-The **metric.py** code calculates the metrics for the results - run **python metric.py ground_truth.csv submission.csv**
-The **privacy.py** code contains the privacy functions
-The **simulate_row.py** code creates a simulated row - called from **main.py**
+The **convert_s2.py** code converts the raw data to properly formatted data.  
+The **main.py** code is the main program - run **python main.py**  
+The **metric.py** code calculates the metrics for the results - run **python metric.py ground_truth.csv submission.csv**  
+The **privacy.py** code contains the privacy functions  
+The **simulate_row.py** code creates a simulated row - called from **main.py**  
 
