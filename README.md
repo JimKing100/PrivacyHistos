@@ -323,7 +323,7 @@ dca 8
 
 ## (4) Sprint 3 Example
 
-The Sprint 3 example is located in the **examples** directory in the **2_sprint3** directory.  This example demonstrates the use of the privacy functions in Sprint 3 of the [Differential Privacy Temporal Map Challenge](https://www.drivendata.co/blog/differential-privacy-winners-sprint3/)
+The Sprint 3 example is located in the **examples** directory in the **2_sprint3** directory.  This example demonstrates the use of the privacy functions in Sprint 3 of the [Differential Privacy Temporal Map Challenge - Sprint 3](https://www.drivendata.co/blog/differential-privacy-winners-sprint3/)
 
 #### Code
 
@@ -336,7 +336,7 @@ The **trips.py** code contains trip related functions - called from **main.py**
 
 ## (5) Sprint 2 Example
 
-The Sprint 2 example is located in the **examples** directory in the **3_sprint2** directory.  This example demonstrates the use of the privacy functions in Sprint 2 of the [Differential Privacy Temporal Map Challenge](https://www.drivendata.co/blog/differential-privacy-winners-sprint2/)
+The Sprint 2 example is located in the **examples** directory in the **3_sprint2** directory.  This example demonstrates the use of the privacy functions in Sprint 2 of the [Differential Privacy Temporal Map Challenge - Sprint 2](https://www.drivendata.co/blog/differential-privacy-winners-sprint2/)
 
 #### Code
 
