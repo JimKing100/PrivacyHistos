@@ -7,6 +7,7 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
 ### [Setup](#0-setup)
  - [Environment](#environment)
  - [Data](#data)
+ - [Unit Testing](#unit-testing)
 ### [Input](#1-input)
  - [Formatted Ground Truth Data](#formatted-ground-truth-data)
  - [Sensitivity and Epsilon](#sensitivity-and-epsilon)
@@ -46,6 +47,10 @@ There are two environments included in this repo, both require **Python 3.8.5+**
 The data directory holds the necessary data files and only contains the data files for the Basic example.  In order to run the other examples the data files below will need to be downloaded from Kaggle into the data directory with the following names:
 - **ground_truth_2.csv** - The ground truth file for the Sprint 2 example (about 111.9MB). [download](https://www.kaggle.com/jimking100/differential-privacy-challenge-sprint-2)
 - **ground_truth_3.csv** - The ground truth file for the Sprint 3 example (about 623.5MB). [download](https://www.kaggle.com/jimking100/differential-privacy-challenge-sprint-3)
+
+### Unit Testing
+
+To run the unit testing simply navigate to the **test** directory and run **pytest**.  You should see 11 unit tests pass.
 
 ## (1) Input
 
