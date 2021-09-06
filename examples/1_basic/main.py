@@ -38,10 +38,24 @@ valid = privacy.check_input(ground_truth, combo_dict, num_dict)
 
 # Preprocess the ground truth by combining the columns and creating decodings
 df, num_decode, col_decode = privacy.preprocess(ground_truth, combo_dict, num_dict)
-print(df, num_decode, col_decode)
+print('The Preprocessed Dataframe')
+print('')
+print(df)
+print('')
+print('The Numeric Decoder Dictionary')
+print('')
+print(num_decode)
+print('')
+print('The Column Decoder Dictionary')
+print('')
+print(col_decode)
+print('')
 
 # Print a count of the number of bins for each histogram
+print('The histo_test Output')
+print('')
 privacy.histo_test(df, combo_dict)
+print('')
 
 # Create privatized histograms for the specified column using the sample size,
 # sensitivity and epsilon
@@ -67,6 +81,8 @@ tips = privacy.col_decoder(num_dict, num_decode, col_decode, fare_value[0], 'tip
 seconds = privacy.col_decoder(num_dict, num_decode, col_decode, fare_value[0], 'seconds_n')
 miles = privacy.col_decoder(num_dict, num_decode, col_decode, fare_value[0], 'miles_n')
 
+print('The Combined Columns and Their Decoded Values')
+print('')
 print('spd_value', spd_value)
 print('shift', shift)
 print('pca', pca)
