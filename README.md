@@ -28,8 +28,8 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [3 histo_test](#3-histo_test)
  - [4 create_private_histos](#4-create_private_histos)
  - [5 col_decoder](#5-col_decoder)
- ### [Sprint 3 Example](#4-sprint3-example)
- ### [Sprint 2 Example](#5-sprint2-example)
+ ### [Sprint 3 Example](#4-sprint-3-example)
+ ### [Sprint 2 Example](#5-sprint-2-example)
 
 ----
 
