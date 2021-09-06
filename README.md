@@ -50,7 +50,7 @@ The data directory holds the necessary data files and only contains the data fil
 
 ### Unit Testing
 
-To run the unit testing simply navigate to the **test** directory and run **pytest**.  You should see 11 unit tests pass.
+To run the 11 unit tests simply navigate to the **test** directory and run **pytest**.
 
 ## (1) Input
 
