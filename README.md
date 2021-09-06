@@ -41,8 +41,8 @@ There are two environments included in this repo, both require **Python 3.8.5+**
 
 ### Data
 
-The data directory holds the necessary data files and only contains the data files for the Basic example.  In order to run the other examples the data files will need to be downloaded into the data directory with the following names:
-- **ground_truth_2.csv** - The ground truth file for the Sprint 2 example (about 111.9MB).
+The data directory holds the necessary data files and only contains the data files for the Basic example.  In order to run the other examples the data files below will need to be downloaded from Kaggle into the data directory with the following names:
+- **ground_truth_2.csv** - The ground truth file for the Sprint 2 example (about 111.9MB). [download](https://www.kaggle.com/jimking100/differential-privacy-challenge-sprint-2)
 - **ground_truth_3.csv** - The ground truth file for the Sprint 3 example (about 623.5MB).
 
 ## (1) Input
