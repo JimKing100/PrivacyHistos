@@ -28,6 +28,8 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [3 histo_test](#3-histo_test)
  - [4 create_private_histos](#4-create_private_histos)
  - [5 col_decoder](#5-col_decoder)
+ ### [Sprint 3 Example](#4-sprint3-example)
+ ### [Sprint 2 Example](#5-sprint2-example)
 
 ----
 
@@ -319,6 +321,11 @@ pca 8
 dca 8
 ```
 
+## (4) Sprint 3 Example
 
+The Sprint 3 example is located in the **examples** directory in the **2_sprint3** directory.  This example demonstrates the use of the privacy functions in Sprint 3 of the [Differential Privacy Temporal Map Challenge](https://www.drivendata.co/blog/differential-privacy-winners-sprint3/)
 
+## (5) Sprint 2 Example
+
+The Sprint 2 example is located in the **examples** directory in the **3_sprint2** directory.  This example demonstrates the use of the privacy functions in Sprint 2 of the [Differential Privacy Temporal Map Challenge](https://www.drivendata.co/blog/differential-privacy-winners-sprint2/)
 
