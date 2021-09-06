@@ -29,7 +29,6 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [4 create_private_histos](#4-create_private_histos)
  - [5 col_decoder](#5-col_decoder)
  ### [Sprint 3 Example](#4-sprint-3-example)
-  - [1 convert_s3](#1-convert_s3)
  ### [Sprint 2 Example](#5-sprint-2-example)
 
 ----
@@ -326,11 +325,24 @@ dca 8
 
 The Sprint 3 example is located in the **examples** directory in the **2_sprint3** directory.  This example demonstrates the use of the privacy functions in Sprint 3 of the [Differential Privacy Temporal Map Challenge](https://www.drivendata.co/blog/differential-privacy-winners-sprint3/)
 
-#### 1 convert_s3
+#### Code
 
-The **convert_s3** code converts the raw data to properly formatted data.
+The **convert_s3.py** code converts the raw data to properly formatted data.
+The **main.py** code is the main program - run **python main.py**
+The **metric.py** code calculates the metrics for the results - run **python metric.py ground_truth.csv submission.csv**
+The **privacy.py** code contains the privacy functions
+The **simulate_row.py** code creates a simulated row - called from **main.py**
+The **trips.py** code contains trip related functions - called from **main.py**
 
 ## (5) Sprint 2 Example
 
 The Sprint 2 example is located in the **examples** directory in the **3_sprint2** directory.  This example demonstrates the use of the privacy functions in Sprint 2 of the [Differential Privacy Temporal Map Challenge](https://www.drivendata.co/blog/differential-privacy-winners-sprint2/)
+
+#### Code
+
+The **convert_s2.py** code converts the raw data to properly formatted data.
+The **main.py** code is the main program - run **python main.py**
+The **metric.py** code calculates the metrics for the results - run **python metric.py ground_truth.csv submission.csv**
+The **privacy.py** code contains the privacy functions
+The **simulate_row.py** code creates a simulated row - called from **main.py**
 
