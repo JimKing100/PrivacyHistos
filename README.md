@@ -29,6 +29,7 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [4 create_private_histos](#4-create_private_histos)
  - [5 col_decoder](#5-col_decoder)
  ### [Sprint 3 Example](#4-sprint-3-example)
+  - [1 convert_s3](#1-convert_s3)
  ### [Sprint 2 Example](#5-sprint-2-example)
 
 ----
@@ -324,6 +325,10 @@ dca 8
 ## (4) Sprint 3 Example
 
 The Sprint 3 example is located in the **examples** directory in the **2_sprint3** directory.  This example demonstrates the use of the privacy functions in Sprint 3 of the [Differential Privacy Temporal Map Challenge](https://www.drivendata.co/blog/differential-privacy-winners-sprint3/)
+
+#### 1 convert_s3
+
+The **convert_s3** code converts the raw data to properly formatted data.
 
 ## (5) Sprint 2 Example
 
