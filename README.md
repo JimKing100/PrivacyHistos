@@ -157,7 +157,7 @@ Decodes the specified column into a its privatized value.
 
 ## (3) Basic Example
 
-The Basic example is located in the **examples** directory in the **1_basic** directory.  The python file is **main.py**.  It uses a small sample of data to demonstrate the use of the five functions.
+The Basic example is located in the **examples** directory in the **basic** directory.  The python file is **main.py**.  It uses a small sample of data to demonstrate the use of the five functions.
 
 #### Basic Formatted Ground Truth
 
@@ -328,7 +328,7 @@ dca 8
 
 ## (4) Sprint 3 Example
 
-The Sprint 3 example is located in the **examples** directory in the **2_sprint3** directory.  This example demonstrates the use of the privacy functions in Sprint 3 of the [Differential Privacy Temporal Map Challenge - Sprint 3](https://www.drivendata.co/blog/differential-privacy-winners-sprint3/).  This link provides details on Sprint 3 as well as an overview of the approach used in the contest.  The code listed below is well documented and demonstrates the use of the privacy functions.  Running the example can take several hours depending on your computer.
+The Sprint 3 example is located in the **examples** directory in the **sprint3** directory.  This example demonstrates the use of the privacy functions in Sprint 3 of the [Differential Privacy Temporal Map Challenge - Sprint 3](https://www.drivendata.co/blog/differential-privacy-winners-sprint3/).  This link provides details on Sprint 3 as well as an overview of the approach used in the contest.  The code listed below is well documented and demonstrates the use of the privacy functions.  Running the example can take several hours depending on your computer.
 
 #### Code
 
@@ -341,7 +341,7 @@ The **trips.py** code contains trip related functions - called from **main.py**
 
 ## (5) Sprint 2 Example
 
-The Sprint 2 example is located in the **examples** directory in the **3_sprint2** directory.  This example demonstrates the use of the privacy functions in Sprint 2 of the [Differential Privacy Temporal Map Challenge - Sprint 2](https://www.drivendata.co/blog/differential-privacy-winners-sprint2/). This link provides details on Sprint 2 as well as an overview of the approach used in the contest.  The code listed below is well documented and demonstrates the use of the privacy functions.  Running the example can take several hours depending on your computer.
+The Sprint 2 example is located in the **examples** directory in the **sprint2** directory.  This example demonstrates the use of the privacy functions in Sprint 2 of the [Differential Privacy Temporal Map Challenge - Sprint 2](https://www.drivendata.co/blog/differential-privacy-winners-sprint2/). This link provides details on Sprint 2 as well as an overview of the approach used in the contest.  The code listed below is well documented and demonstrates the use of the privacy functions.  Running the example can take several hours depending on your computer.
 
 #### Code
 
