@@ -4,7 +4,7 @@ from random import choices
 import privacy
 
 # Set root and data directories
-ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product1/PrivacyHistos")
+ROOT_DIRECTORY = Path(__file__).absolute().parent.parent.parent
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_test.csv"
 

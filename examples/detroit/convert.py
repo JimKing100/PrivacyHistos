@@ -2,7 +2,7 @@ import pandas as pd
 from datetime import datetime
 from pathlib import Path
 
-ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product1/PrivacyHistos")
+ROOT_DIRECTORY = Path(__file__).absolute().parent.parent.parent
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 raw_data_file = DATA_DIRECTORY / "2015_fire_data.csv"
 output_file = DATA_DIRECTORY / "ground_truth_detroit.csv"

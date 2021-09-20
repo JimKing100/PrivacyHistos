@@ -9,7 +9,7 @@ import privacy
 from simulate_row import simulate_row
 
 # Set root and data directories
-ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product/final")
+ROOT_DIRECTORY = Path(__file__).absolute().parent.parent.parent
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_s2.csv"
 output_file = ROOT_DIRECTORY / "submission2.csv"

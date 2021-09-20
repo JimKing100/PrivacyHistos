@@ -6,15 +6,10 @@ from random import choices
 import privacy
 from simulate_row import simulate_row
 
-ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product1/PrivacyHistos")
+ROOT_DIRECTORY = Path(__file__).absolute().parent.parent.parent
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_detroit.csv"
 output_file = DATA_DIRECTORY / "submission.csv"
-
-header = ['incident_i', 'engine_area_c', 'exposure_c', 'incident_type_c',
-          'property_use_c', 'detector_c', 'structure_stat_c', 'cinjury_c',
-          'cfatal_c', 'finjury_c', 'ffatal_c', 'call_month_c', 'call_day_c',
-          'call_hour_c', 'dispatch_n', 'arrival_n', 'clear_n']
 
 number_histos = 4
 population_queries = 1
@@ -30,7 +25,7 @@ combo_dict = {'type': ['engine_area_c', 'exposure_c', 'incident_type_c', 'proper
 
 num_dict = {'dispatch_n': [1000, 50, 5000],
             'arrival_n': [1000, 50, 5000],
-            'clear_n': [1000, 50, 10000]
+            'clear_n': [5000, 50, 10000]
             }
 
 
@@ -38,6 +33,7 @@ def main():
 
     logger.info("begin pre-processing")
     ground_truth = pd.read_csv(ground_truth_file)
+    header = list(ground_truth.columns)
     valid = privacy.check_input(ground_truth, combo_dict, num_dict)
     if valid != 1:
         return

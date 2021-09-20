@@ -2,7 +2,7 @@ import pandas as pd
 from pathlib import Path
 
 # Set root and data directories
-ROOT_DIRECTORY = Path("/Users/JKMacBook/Documents/Lambda/Product1/PrivacyHistos")
+ROOT_DIRECTORY = Path(__file__).absolute().parent.parent.parent
 DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_3.csv"
 output_file = DATA_DIRECTORY / "ground_truth_s3.csv"
