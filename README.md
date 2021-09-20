@@ -30,6 +30,9 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [4 create_private_histos](#4-create_private_histos)
  - [5 col_decoder](#5-col_decoder)
  ### [Detroit Example](#4-detroit-example)
+ - [Convert Raw Data to Formatted Ground Truth](#convert-raw-data-to-formatted-ground-truth)
+ - [Configure and Create the Histograms](#configure-and-create-the-histograms)
+ - [Create Individual Rows of Simulated Data](#create-individual-rows-of-simulated-data)
  ### [Sprint 3 Example](#5-sprint-3-example)
  ### [Sprint 2 Example](#6-sprint-2-example)
 
@@ -328,7 +331,19 @@ dca 8
 ```
 ## (4) Detroit Example
 
-The Detroit example is located in the **examples** directory in the **detroit** directory.  This example demonstrates how to generate a basic synthetic dataset from a raw .csv dataset.  The example uses the [City of Detroit 2015 Fire Data](https://data.world/detroit/detroit-2015-fire-data). 
+The Detroit example is located in the **examples** directory in the **detroit** directory.  This example demonstrates how to generate a basic synthetic dataset from a raw .csv dataset.  The example uses the [City of Detroit 2015 Fire Data](https://data.world/detroit/detroit-2015-fire-data).
+
+#### Convert Raw Data to Formatted Ground Truth
+
+The **convert.py** code converts the raw data to properly formatted ground truth data.
+
+#### Configure and Create the Histograms
+
+The **main.py** code is the main program containing the configuration and creating of the privatized histograms.  It calls the **simulate_row.py** code to create a row of simulated data.
+
+#### Create Individual Rows of Simulated Data
+
+The **simulate_row.py** code creates an individual row of simulated data.
 
 ## (5) Sprint 3 Example
 
