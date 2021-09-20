@@ -339,7 +339,7 @@ The **convert.py** code converts the raw data to properly formatted ground truth
 
 #### Configure and Create the Histograms
 
-The **main.py** code is the main program containing the configuration and creating of the privatized histograms.  It calls the **simulate_row.py** code to create a row of simulated data.
+The **main.py** code is the main program containing the configuration and creation of the privatized histograms.  It calls the **simulate_row.py** code to create a row of simulated data.
 
 #### Create Individual Rows of Simulated Data
 
