@@ -1,6 +1,6 @@
 # PrivacyHistos
 
-Welcome to the PrivacyHistos repository.  This repo contains five differential privacy functions for combining features into privatized histograms.  The five functions are contained in the **privacy.py** file located in the **src** directory.
+Welcome to the PrivacyHistos repository.  This repo contains five differential privacy functions for combining features into privatized histograms.  These functions can be used in python applications to produce a synthetic dataset based on a 'ground truth' dataset, with an aim of adhering to differential privacy, as demostrated by the examples. The five functions are contained in the **privacy.py** file located in the **src** directory.
 
 ----
 
@@ -29,8 +29,9 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [3 histo_test](#3-histo_test)
  - [4 create_private_histos](#4-create_private_histos)
  - [5 col_decoder](#5-col_decoder)
- ### [Sprint 3 Example](#4-sprint-3-example)
- ### [Sprint 2 Example](#5-sprint-2-example)
+ ### [Detroit Example](#4-detroit-example)
+ ### [Sprint 3 Example](#5-sprint-3-example)
+ ### [Sprint 2 Example](#6-sprint-2-example)
 
 ----
 
@@ -325,8 +326,11 @@ shift 13
 pca 8
 dca 8
 ```
+## (4) Detroit Example
 
-## (4) Sprint 3 Example
+The Detroit example is located in the **examples** directory in the **detroit** directory.  This example demonstrates how to generate a basic synthetic dataset from a raw .csv dataset.  The example uses the [City of Detroit 2015 Fire Data](https://data.world/detroit/detroit-2015-fire-data). 
+
+## (5) Sprint 3 Example
 
 The Sprint 3 example is located in the **examples** directory in the **sprint3** directory.  This example demonstrates the use of the privacy functions in Sprint 3 of the [Differential Privacy Temporal Map Challenge - Sprint 3](https://www.drivendata.co/blog/differential-privacy-winners-sprint3/).  This link provides details on Sprint 3 as well as an overview of the approach used in the contest.  The code listed below is well documented and demonstrates the use of the privacy functions.  Running the example can take several hours depending on your computer.
 
@@ -339,7 +343,7 @@ The **privacy.py** code contains the privacy functions - called from **main.py**
 The **simulate_row.py** code creates a simulated row - called from **main.py**  
 The **trips.py** code contains trip related functions - called from **main.py**  
 
-## (5) Sprint 2 Example
+## (6) Sprint 2 Example
 
 The Sprint 2 example is located in the **examples** directory in the **sprint2** directory.  This example demonstrates the use of the privacy functions in Sprint 2 of the [Differential Privacy Temporal Map Challenge - Sprint 2](https://www.drivendata.co/blog/differential-privacy-winners-sprint2/). This link provides details on Sprint 2 as well as an overview of the approach used in the contest.  The code listed below is well documented and demonstrates the use of the privacy functions.  Running the example can take several hours depending on your computer.
 
