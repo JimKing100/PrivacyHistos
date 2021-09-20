@@ -11,33 +11,37 @@ DATA_DIRECTORY = ROOT_DIRECTORY / "data"
 ground_truth_file = DATA_DIRECTORY / "ground_truth_detroit.csv"
 output_file = DATA_DIRECTORY / "submission.csv"
 
-number_histos = 4
-population_queries = 1
-sample = 0
-sample_size = 1
-epsilons = [1.0]
+number_histos = 4       # Create 4 histograms
+population_queries = 1  # Use one population query for number of incidents
+sample = 0              # Do not use sampling
+sample_size = 1         # Sample size is 1
+epsilons = [1.0]        # Use and epsilon value of 1.0
 
+# Define the combined columns for the 4 histograms
 combo_dict = {'type': ['engine_area_c', 'exposure_c', 'incident_type_c', 'property_use_c', 'detector_c', 'structure_stat_c'],
               'injury': ['cinjury_c', 'cfatal_c', 'finjury_c', 'ffatal_c'],
               'call': ['call_month_c', 'call_day_c', 'call_hour_c'],
               'result': ['dispatch_n', 'arrival_n', 'clear_n']
               }
 
+# Define the number dictionary for each numeric column
 num_dict = {'dispatch_n': [1000, 50, 5000],
             'arrival_n': [1000, 50, 5000],
             'clear_n': [5000, 50, 10000]
             }
 
 
+# The main program
 def main():
 
+    # Load the ground truth and check for proper formatting
     logger.info("begin pre-processing")
     ground_truth = pd.read_csv(ground_truth_file)
-    header = list(ground_truth.columns)
     valid = privacy.check_input(ground_truth, combo_dict, num_dict)
     if valid != 1:
         return
 
+    # Preprocess the ground truth
     df, num_decodes, col_decodes = privacy.preprocess(ground_truth, combo_dict, num_dict)
     privacy.histo_test(df, combo_dict)
     logger.info("end pre-processing")
@@ -45,6 +49,7 @@ def main():
     # main for loop
     for epsilon in epsilons:
         # Create dataframe for final results
+        header = list(ground_truth.columns)
         final_df = pd.DataFrame(columns=header)
         final_list = []
 
@@ -62,6 +67,7 @@ def main():
         call_pop, call_w = privacy.create_private_histo(df, 'call', sample, sample_size, sensitivity, epsilon)
         result_pop, result_w = privacy.create_private_histo(df, 'result', sample, sample_size, sensitivity, epsilon)
 
+        # Create the individual incidents
         for i in range(num_incidents_noise):
             type_value = choices(type_pop, type_w, k=1)
             injury_value = choices(injury_pop, injury_w, k=1)
@@ -78,6 +84,7 @@ def main():
                                )
             final_list.append(row)
 
+        # Output the dataset
         logger.info('writing data to output file')
         final_df = pd.DataFrame.from_dict(final_list)
         final_df.to_csv(output_file, index=False)
