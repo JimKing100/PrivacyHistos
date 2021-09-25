@@ -76,7 +76,7 @@ In order to use the functions the following input is required:
       - Number of histograms – the total number of histograms which may include other histograms not using the combined column approach.
       - Sample size – the number of individual records to use for building the histograms (if sampling is used).
       - Population queries – the total number of population queries used in the overall approach.
-   * Epsilon - The epslion value to use
+   * Epsilon - The epslion value to use (typically in the range of .1 to 10)
 
 #### Combination Dictionary
 
@@ -85,7 +85,8 @@ In order to use the functions the following input is required:
    * combo_name – name of the the new combined feature
    * column_list – a list of columns to combine (categorical and/or numeric)
    * Example - {‘cp’: [‘company_c’, ‘payment_c’]}
-   * Explanation – Create a column named ‘cp’ combining categorical fields ‘company_c’ and ‘payment_c’
+   * Explanation – Create a column named ‘cp’ combining categorical fields ‘company_c’ and ‘payment_c’  
+   * Requirements - You cannot combine catgorical columns with numeric columns
 
 #### Numeric Dictionary
 
