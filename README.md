@@ -335,7 +335,9 @@ The Detroit example is located in the **examples** directory in the **detroit** 
 
 #### Convert Raw Data to Formatted Ground Truth
 
-The **convert.py** code converts the raw data to properly formatted ground truth data.
+The **convert.py** code converts the raw data to properly formatted ground truth data.  
+
+The goal of the conversion to simplify the data as much as possible.  In the case of the Detroit data there are 5 location columns (ADDRESS, ENGINE AREA, X, Y, and LOCATION).  We are going to only use ENGINE AREA and delete the other 4.  In addition, there are 8 date and time columns related to incident calls.  The columns DATE OF CALL and TIME OF CALL contain month, day year, hour, minute and second of the call and are reduced to **call_month_c, call_day_c** and **call_hour_c**. As for the the 6 field related to the date and time of dispatch, arrival and clearance of an incident call (DATE OF DISPATCH, TIME OF DISPATCH, DATE OF ARRIVAL, TIME OF ARRIVAL, DATE UNIT CLEARED, and TIME UNIT CLEARED), they are reduced to minutes from call in **dispatch_n, arrival_n,** and **clear_n**.  The INCIDENT TYPE and INCIDENT TYPE CATEGORY contain the same information and are reduced to **indicent_type_c**.  A synthetic **incident_i** column is created to replace the actual INCIDENT #column.
 
 #### Configure and Create the Histograms
 
