@@ -389,6 +389,44 @@ df, num_decodes, col_decodes = privacy.preprocess(ground_truth, combo_dict, num_
 privacy.histo_test(df, combo_dict)
 ```
 
+A loop based on the number of epsilon values is entered, but since there is only one epsilon the loop is run through once in this example.  The first step in the loop is to calculate the sensitivity which equals the number of histograms times the sample size plus the number of population queries.  This value equals (3 x 1) + 1 = 4.  The Laplace Mechanism is then used to add noise to the total number of incidents in the ground truth to create the number of incidents in the new privatized synthetic dataset.  This number will vary each time the program is run.
+
+```
+sensitivity = (number_histos * sample_size) + population_queries
+
+num_incidents = len(df)
+num_incidents_noise = int(privacy.laplaceMechanism(num_incidents, sensitivity, epsilon))
+```
+
+The 4 privatized histograms are then created and consist of population list and a weight list.
+
+```
+type_pop, type_w = privacy.create_private_histo(df, 'type', sample, sample_size, sensitivity, epsilon)
+injury_pop, injury_w = privacy.create_private_histo(df, 'injury', sample, sample_size, sensitivity, epsilon)
+call_pop, call_w = privacy.create_private_histo(df, 'call', sample, sample_size, sensitivity, epsilon)
+result_pop, result_w = privacy.create_private_histo(df, 'result', sample, sample_size, sensitivity, epsilon)
+```
+
+Finally, for each simulated incident, the histograms (population and weight lists) are randomly sampled and a random value based on the weights of the privitized data is passed to **simulate_row** to be decoded into the original values.
+
+```
+for i in range(num_incidents_noise):
+    type_value = choices(type_pop, type_w, k=1)
+    injury_value = choices(injury_pop, injury_w, k=1)
+    call_value = choices(call_pop, call_w, k=1)
+    result_value = choices(result_pop, result_w, k=1)
+    row = simulate_row(i,
+                       type_value[0],
+                       injury_value[0],
+                       call_value[0],
+                       result_value[0],
+                       num_dict,
+                       num_decodes,
+                       col_decodes
+                       )
+    final_list.append(row)
+```
+
 #### Create Individual Rows of Simulated Data
 
 The **simulate_row.py** code creates an individual row of simulated data.
