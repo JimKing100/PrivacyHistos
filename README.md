@@ -382,7 +382,7 @@ if valid != 1:
     return
 ```
 
-The ground truth is then preprocessed into a new combined column dataframe and numeric and column decoding information.
+The ground truth is then preprocessed into a new combined column dataframe and numeric/column decoding information.
 
 ```
 df, num_decodes, col_decodes = privacy.preprocess(ground_truth, combo_dict, num_dict)
@@ -398,7 +398,7 @@ num_incidents = len(df)
 num_incidents_noise = int(privacy.laplaceMechanism(num_incidents, sensitivity, epsilon))
 ```
 
-The 4 privatized histograms are then created and consist of population list and a weight list.
+The 4 privatized histograms are then created and consist of a population list and a weight list.
 
 ```
 type_pop, type_w = privacy.create_private_histo(df, 'type', sample, sample_size, sensitivity, epsilon)
