@@ -33,6 +33,7 @@ Welcome to the PrivacyHistos repository.  This repo contains five differential p
  - [Convert Raw Data to Formatted Ground Truth](#convert-raw-data-to-formatted-ground-truth)
  - [Configure and Create the Histograms](#configure-and-create-the-histograms)
  - [Create Individual Rows of Simulated Data](#create-individual-rows-of-simulated-data)
+ - [Results and Discussion](#results-and-discussion)
  ### [Sprint 3 Example](#5-sprint-3-example)
  ### [Sprint 2 Example](#6-sprint-2-example)
 
@@ -453,6 +454,9 @@ row['dispatch_n'] = privacy.col_decoder(n_dict, n_decode, c_decode, result, 'dis
 row['arrival_n'] = privacy.col_decoder(n_dict, n_decode, c_decode, result, 'arrival_n')
 row['clear_n'] = privacy.col_decoder(n_dict, n_decode, c_decode, result, 'clear_n')
 ```
+
+#### Results and Discussion
+
 
 ## (5) Sprint 3 Example
 
