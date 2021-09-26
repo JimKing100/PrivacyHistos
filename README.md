@@ -338,11 +338,31 @@ The Detroit example is located in the **examples** directory in the **detroit** 
 
 The **convert.py** code converts the raw data to properly formatted ground truth data.  
 
-The goal of the conversion to simplify the data as much as possible.  In the case of the Detroit data there are 5 location columns (ADDRESS, ENGINE AREA, X, Y, and LOCATION).  We are going to only use ENGINE AREA and delete the other 4.  In addition, there are 8 date and time columns related to incident calls.  The columns DATE OF CALL and TIME OF CALL contain month, day year, hour, minute and second of the call and are reduced to **call_month_c, call_day_c** and **call_hour_c**. As for the the 6 field related to the date and time of dispatch, arrival and clearance of an incident call (DATE OF DISPATCH, TIME OF DISPATCH, DATE OF ARRIVAL, TIME OF ARRIVAL, DATE UNIT CLEARED, and TIME UNIT CLEARED), they are reduced to minutes from call in **dispatch_n, arrival_n,** and **clear_n**.  The INCIDENT TYPE and INCIDENT TYPE CATEGORY contain the same information and are reduced to **indicent_type_c**.  A synthetic **incident_i** column is created to replace the actual INCIDENT #column.  The remaining columns match the raw data.
+The goal of the conversion is to simplify the data as much as possible.  In the case of the Detroit data there are 5 location columns (ADDRESS, ENGINE AREA, X, Y, and LOCATION).  Only one location column is needed, so ENGINE AREA is used and the other 4 are deleted.  In addition, there are 8 date and time columns related to incident calls.  The columns DATE OF CALL and TIME OF CALL contain month, day year, hour, minute and second of the call and are reduced to **call_month_c, call_day_c** and **call_hour_c**. As for the the 6 fields related to the date and time of dispatch, arrival and clearance of an incident call (DATE OF DISPATCH, TIME OF DISPATCH, DATE OF ARRIVAL, TIME OF ARRIVAL, DATE UNIT CLEARED, and TIME UNIT CLEARED), they are reduced to minutes-from-call in **dispatch_n, arrival_n,** and **clear_n**.  The INCIDENT TYPE and INCIDENT TYPE CATEGORY contain the same information and are reduced to **indicent_type_c**.  A synthetic **incident_i** column is created to replace the actual INCIDENT #column.  The remaining columns match the raw data.
 
 #### Configure and Create the Histograms
 
-The **main.py** code is the main program containing the configuration and creation of the privatized histograms.  It calls the **simulate_row.py** code to create a row of simulated data.
+The **main.py** code is the main program containing the configuration and creation of the privatized histograms.  It calls the **simulate_row.py** code to create a row of simulated data.  
+
+The **main.py** code begins with configuration parameters.  There are a total of 4 histograms used, 3 combined histograms and 1 population query.  The maximum record per individual incident is 1, the sample size.  An epsilon value of 1 is used.
+
+```
+number_histos = 4       # Create 4 histograms
+population_queries = 1  # Use one population query for number of incidents
+sample = 0              # Do not use sampling
+sample_size = 1         # Sample size is 1
+epsilons = [1.0]        # Use and epsilon value of 1.0
+```
+
+The columns are combined into 4 combined histograms:  type, injury, call and result.  The general idea is to combine similar or correlated columns.  Categorical and numeric features cannot be combined in the same histogram.  In this example, all injury related columns are combined, all call related categorical columns are combined, all call related numeric columns are combined and the remaining descriptive columns are combined.
+
+```
+combo_dict = {'type': ['engine_area_c', 'exposure_c', 'incident_type_c', 'property_use_c', 'detector_c', 'structure_stat_c'],
+              'injury': ['cinjury_c', 'cfatal_c', 'finjury_c', 'ffatal_c'],
+              'call': ['call_month_c', 'call_day_c', 'call_hour_c'],
+              'result': ['dispatch_n', 'arrival_n', 'clear_n']
+              }
+```
 
 #### Create Individual Rows of Simulated Data
 
