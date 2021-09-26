@@ -364,6 +364,31 @@ combo_dict = {'type': ['engine_area_c', 'exposure_c', 'incident_type_c', 'proper
               }
 ```
 
+For the numeric columns, the range of bin values needs to be defined.  For **dispatch_n** and **arrival_n** bins are created from 0 to 1000 in increments of 50 with the remaining values in a bin from 1000 to 5000.  For **clear_n** bins are created from 0 to 5000 in increments of 50 with the remaining values in a bin from 5000 to 10000.
+
+```
+num_dict = {'dispatch_n': [1000, 50, 5000],
+            'arrival_n': [1000, 50, 5000],
+            'clear_n': [5000, 50, 10000]
+            }
+```
+
+Once the configuration is complete the **main()** program begins by loading the converted ground truth file and checking that it meets the basic formatting criteria of all integers, no Nans and appropriately appended column names.
+
+```
+ground_truth = pd.read_csv(ground_truth_file)
+valid = privacy.check_input(ground_truth, combo_dict, num_dict)
+if valid != 1:
+    return
+```
+
+The ground truth is then preprocessed into a new combined column dataframe and numeric and column decoding information.
+
+```
+df, num_decodes, col_decodes = privacy.preprocess(ground_truth, combo_dict, num_dict)
+privacy.histo_test(df, combo_dict)
+```
+
 #### Create Individual Rows of Simulated Data
 
 The **simulate_row.py** code creates an individual row of simulated data.
