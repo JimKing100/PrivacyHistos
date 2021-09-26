@@ -457,6 +457,9 @@ row['clear_n'] = privacy.col_decoder(n_dict, n_decode, c_decode, result, 'clear_
 
 #### Results and Discussion
 
+The Detroit example creates simulated data that resembles the ground truth data.  The number of incidents is usually within about 0-15 incidents out of almost 20,000 incidents.  The distribution of values in each of the simulated columns closely resembles the distribution of values in each of the ground truth columns.  The actual values of the categorical columns of the simulated data match the catgorical values of the ground truth columns.  While the numeric values in the simulated data don't match the numeric values in the ground truth data, they are in a reasonable range.
+
+The area where the simulated data is weak is in the linkage of the combined columns.  For example, for certain incident types (e.g. false alarms, unintentional calls) one would expect the clearance times to be shorter than other incident types (buildiing fire, gasoline spill).  So in order to improve the accuracy of the simulated data a link would need to be made between the combined column **type** containing the **incident_type_c** column and the combined column **result** containing the **clear_n** column.  An example of "linking" combined columns can be found in the **Sprint 3 Example**.
 
 ## (5) Sprint 3 Example
 
