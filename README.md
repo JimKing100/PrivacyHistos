@@ -355,7 +355,7 @@ sample_size = 1         # Sample size is 1
 epsilons = [1.0]        # Use and epsilon value of 1.0
 ```
 
-The columns are combined into 4 combined histograms:  type, injury, call and result.  The general idea is to combine similar or correlated columns.  Categorical and numeric features cannot be combined in the same histogram.  In this example, all injury related columns are combined (injury), all call related categorical columns are combined (call), all call related numeric columns are combined (result) and the remaining descriptive columns are combined (type).
+The columns are combined into 4 combined histograms:  **type, injury, call** and **result**.  The general idea is to combine similar or correlated columns.  Categorical and numeric features cannot be combined in the same histogram.  In this example, all injury related columns are combined (injury), all call related categorical columns are combined (call), all call related numeric columns are combined (result) and the remaining descriptive columns are combined (type).
 
 ```
 combo_dict = {'type': ['engine_area_c', 'exposure_c', 'incident_type_c', 'property_use_c', 'detector_c', 'structure_stat_c'],
