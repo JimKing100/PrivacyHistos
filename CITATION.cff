@@ -1,0 +1,13 @@
+abstract: "Differential privacy functions for combining features into privatized histograms."
+authors:
+  - family-names: King
+    given-names: Jim
+cff-version: 1.2.0
+date-released: "2021-10-15"
+keywords:
+  - "differential privacy"
+license: MIT
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/JimKing100/PrivacyHistos"
+title: "Privitized Histograms"
+version: 1.0.0
